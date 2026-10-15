@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | ADEKAMBI Kolawole Farouck Tunde - Application Security Engineer</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #070a12;
+            --bg-card: rgba(15, 23, 42, 0.75);
+            --accent-color: #00d2ff;
+            --accent-secondary: #3a7bd5;
+            --accent-glow: rgba(0, 210, 255, 0.4);
+            --border-glow: rgba(0, 210, 255, 0.25);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        /* Thème Rouge Alerte / Threat Mode */
+        body.theme-red {
+            --accent-color: #ff3366;
+            --accent-secondary: #ff003c;
+            --accent-glow: rgba(255, 51, 102, 0.45);
+            --border-glow: rgba(255, 51, 102, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--accent-glow) 0%, transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(15, 23, 42, 0.8) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* Grand Cadre Photo Stylisé */
+        .large-photo-container {
+            position: relative;
+            width: 340px;
+            height: 340px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 992px) {
+            .large-photo-container {
+                width: 400px;
+                height: 400px;
+            }
+        }
+
+        .large-photo-container:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-outer-glow {
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--accent-color), transparent, var(--accent-secondary), var(--accent-color));
+            filter: blur(25px);
+            opacity: 0.8;
+            animation: rotateGlow 8s linear infinite;
+            transition: all 0.5s ease;
+        }
+
+        .photo-metallic-frame {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #e6e6e6, #404040, #1a1a1a, #808080);
+            padding: 6px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+            transition: all 0.5s ease;
+        }
+
+        .photo-inner-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--bg-dark);
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-inner-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease, transform 0.5s ease;
+        }
+
+        .photo-placeholder-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .shield-badge-overlay {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 75px;
+            height: 75px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: all 0.5s ease;
+        }
+
+        /* Cartes Style Glassmorphism */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-color);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-glow);
+        }
+
+        .text-accent {
+            color: var(--accent-color) !important;
+            transition: color 0.5s ease;
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            color: #000;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent:hover {
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .badge-tech {
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--accent-color);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 0.82rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* WIDGET AUDIO STYLISÉ */
+        .audio-player-widget {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--accent-color);
+            border-radius: 50px;
+            padding: 6px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .audio-wave {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 18px;
+        }
+
+        .audio-bar {
+            width: 3px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 3px;
+            transition: height 0.2s ease;
+        }
+
+        .audio-playing .bar-1 { animation: wave 0.6s ease-in-out infinite alternate; }
+        .audio-playing .bar-2 { animation: wave 0.8s ease-in-out infinite alternate 0.2s; }
+        .audio-playing .bar-3 { animation: wave 0.5s ease-in-out infinite alternate 0.4s; }
+
+        @keyframes wave {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .timeline-box {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        footer {
+            background: #03050a;
+            border-top: 2px solid var(--accent-color);
+            transition: border-color 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ELEMENT AUDIO CACHÉ DU NAVIGATEUR -->
+    <!-- REMPLACEZ 'mon-audio.mp3' PAR VOTRE FICHIER SON / MUSIQUE -->
+    <audio id="portfolioAudio" loop preload="auto">
+        <source src="bisimanuel.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" style="background: rgba(7, 10, 18, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-glow);">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="#">
+                <i class="fa-solid fa-shield-halved text-accent me-2"></i>
+                <span>ADEKAMBI</span> <span class="text-accent">Farouck</span>
+            </a>
+
+            <!-- LECTEUR AUDIO RAPIDE DANS LA NAVBAR -->
+            <div class="audio-player-widget ms-lg-3 me-2" id="audioWidget">
+                <button onclick="toggleAudio()" class="btn btn-sm btn-link text-accent p-0 text-decoration-none" id="audioBtn" title="Activer / Désactiver l'audio">
+                    <i class="fa-solid fa-play" id="audioIcon"></i>
+                </button>
+                <div class="audio-wave" id="audioWave">
+                    <div class="audio-bar bar-1"></div>
+                    <div class="audio-bar bar-2"></div>
+                    <div class="audio-bar bar-3"></div>
+                </div>
+                <small class="text-muted d-none d-sm-inline font-monospace" style="font-size: 0.75rem;" id="audioStatus">Audio : Off</small>
+            </div>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3">
+                    <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#expertise">Domaines</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Compétences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projets Phares</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Parcours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                    <li class="nav-item">
+                        <button onclick="toggleTheme()" class="btn btn-sm btn-outline-info rounded-pill px-3 mt-1">
+                            <i class="fa-solid fa-swatchbook me-1"></i> Mode Thème
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="min-vh-100 d-flex align-items-center pt-5 mt-4">
+        <div class="container py-5">
+            <div class="row align-items-center gy-5">
+                
+                <div class="col-lg-7 text-center text-lg-start">
+                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start mb-3">
+                        <span class="badge bg-dark border border-info text-accent px-3 py-2 rounded-pill">
+                            <i class="fa-solid fa-shield-virus me-2"></i>APPLICATION SECURITY ENGINEER
+                        </span>
+                        <span class="badge bg-dark border border-secondary text-light px-3 py-2 rounded-pill">
+                            <i class="fa-solid fa-location-dot me-2 text-accent"></i>Porto-Novo, Bénin
+                        </span>
+                    </div>
+
+                    <h1 class="display-3 fw-bold mb-3">
+                        APPLICATION <br>
+                        <span class="text-accent">SECURITY ENGINEER</span>
+                    </h1>
+                    
+                    <p class="fs-5 text-muted mb-4 lead">
+                        Concepteur de systèmes informatiques sécurisés, auditeur de code et développeur d'applications web robustes. Basé à Porto-Novo (Bénin).
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start align-items-center">
+                        <a href="#projects" class="btn btn-accent btn-lg rounded-pill px-4">
+                            <i class="fa-solid fa-rocket me-2"></i>Découvrir mes Projets
+                        </a>
+                        <!-- BOUTON MUSIQUE AMBIANCE HERO -->
+                        <button onclick="toggleAudio()" class="btn btn-outline-info btn-lg rounded-pill px-4">
+                            <i class="fa-solid fa-music me-2" id="heroAudioIcon"></i> <span id="heroAudioText">Écouter la Musique</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GRAND CADRE PHOTO INTERACTIF -->
+                <div class="col-lg-5 text-center">
+                    <div class="large-photo-container" onclick="toggleTheme()" title="Cliquez pour changer la couleur du thème !">
+                        <div class="photo-outer-glow" id="photoGlow"></div>
+                        <div class="photo-metallic-frame">
+                            <div class="photo-inner-box">
+                                <!-- REMPLACEZ 'votre-photo.jpg' PAR LE NOM DE VOTRE FICHIER IMAGE -->
+                                <img src="1762615305893.jpg" alt="ADEKAMBI Kolawole Farouck Tunde" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <div class="photo-placeholder-text" style="display: none;">
+                                    <i class="fa-solid fa-user-gear fs-1 text-accent mb-2"></i><br>
+                                    Insérez votre photo<br><strong>votre-photo.jpg</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shield-badge-overlay">
+                            <i class="fa-solid fa-shield-cat"></i>
+                        </div>
+                    </div>
+                    <p class="text-muted small mt-3">
+                        <i class="fa-solid fa-hand-pointer text-accent me-1"></i> Cliquez sur le cadre pour changer la couleur du thème !
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION À PROPOS DÉTAILLÉE -->
+    <section id="about" class="py-5">
+        <div class="container py-4">
+            <div class="glass-card p-4 p-lg-5">
+                <div class="row gy-4 align-items-center">
+                    <div class="col-lg-4 text-center border-end-lg border-secondary border-opacity-25">
+                        <div class="p-3">
+                            <i class="fa-solid fa-user-shield text-accent display-1 mb-3"></i>
+                            <h3 class="h4 fw-bold">ADEKAMBI Farouck</h3>
+                            <p class="text-muted small mb-2">Ingénieur en Sécurité Applicative</p>
+                            <span class="badge bg-success bg-opacity-20 text-success border border-success px-3 py-2 rounded-pill">
+                                <i class="fa-solid fa-location-dot me-1"></i> Porto-Novo / Cinquantenaire
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <h2 class="display-6 fw-bold mb-3">Profil & Vision Professionnelle</h2>
+                        <p class="text-muted">
+                            Titulaire d'une <strong>Licence en Systèmes Informatiques et Logiciels (SIL)</strong> délivrée par l'<strong>Université Protestante de l'Afrique de l'Ouest (UPAO)</strong>, je réside au Bénin, dans la ville de <strong>Porto-Novo (Quartier Cinquantenaire)</strong>.
+                        </p>
+                        <p class="text-muted">
+                            Passionné par l'architecture logicielle sécurisée et la protection des données, je combine des compétences avancées en développement web fullstack (PHP, Symfony, Python, MySQL, PostgreSQL) et en sécurité informatique (Analyse de vulnérabilités, Wireshark, Forensics, audits de conformité).
+                        </p>
+                        <div class="row g-3 mt-3">
+                            <div class="col-sm-6">
+                                <div class="p-3 bg-dark bg-opacity-50 rounded border border-secondary">
+                                    <small class="text-muted d-block"><i class="fa-solid fa-location-crosshairs text-accent me-1"></i> Adresse exacte :</small>
+                                    <span class="fw-semibold">Porto-Novo, Cinquantenaire, Bénin</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="p-3 bg-dark bg-opacity-50 rounded border border-secondary">
+                                    <small class="text-muted d-block"><i class="fa-solid fa-language text-accent me-1"></i> Langues maîtrisées :</small>
+                                    <span class="fw-semibold">Français (Courant) / Anglais (Professionnel)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MES DOMAINES D'EXPERTISE -->
+    <section id="expertise" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary bg-opacity-20 text-info border border-info px-3 py-2 rounded-pill mb-2">POLES DE COMPÉTENCES</span>
+                <h2 class="display-5 fw-bold">Domaines d'Expertise</h2>
+                <p class="text-muted">Une prise en charge globale des projets, du développement à la sécurisation complète.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card p-4 h-100 text-center">
+                        <i class="fa-solid fa-shield-virus fs-1 text-accent mb-3"></i>
+                        <h3 class="h5 fw-bold">Sécurité Applicative</h3>
+                        <p class="text-muted small">
+                            Audits de vulnérabilités (OWASP Top 10), analyse statique/dynamique de code, sécurisation d'API et règles CSP/HSTS.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card p-4 h-100 text-center">
+                        <i class="fa-solid fa-laptop-code fs-1 text-accent mb-3"></i>
+                        <h3 class="h5 fw-bold">Développement Fullstack</h3>
+                        <p class="text-muted small">
+                            Conception d'applications web réactives avec PHP, Symfony, Python, Bootstrap, JavaScript et Tailwind CSS.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card p-4 h-100 text-center">
+                        <i class="fa-solid fa-database fs-1 text-accent mb-3"></i>
+                        <h3 class="h5 fw-bold">Bases de Données</h3>
+                        <p class="text-muted small">
+                            Modélisation Merise/UML, optimisation de requêtes et administration SQL sous MySQL, PostgreSQL et phpMyAdmin.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card p-4 h-100 text-center">
+                        <i class="fa-solid fa-network-wired fs-1 text-accent mb-3"></i>
+                        <h3 class="h5 fw-bold">Forensics & Réseaux</h3>
+                        <p class="text-muted small">
+                            Analyse de paquets réseaux sous Wireshark, investigations numériques (Forensics), Kali Linux et environnements virtuels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJET PHARE: AUDIT DE SÉCURITÉ -->
+    <section id="projects" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="badge bg-danger bg-opacity-20 text-danger border border-danger px-3 py-2 rounded-pill mb-2">PROJET MAJEUR</span>
+                <h2 class="display-5 fw-bold">Plateforme d'Audit & Sécurité Web</h2>
+                <p class="text-muted">Analyse de sécurité, conformité et inspection automatique des applications web.</p>
+            </div>
+
+            <div class="glass-card p-4 p-lg-5 mb-5">
+                <div class="row align-items-center gy-4">
+                    <div class="col-lg-6">
+                        <div class="badge bg-primary bg-opacity-20 text-info border border-info mb-3 px-3 py-2">
+                            Audit Web • Sécurité • Données Personnelles
+                        </div>
+                        <h3 class="display-6 fw-bold mb-3">Comprenez le niveau de sécurité et de conformité de vos applications</h3>
+                        <p class="text-muted">
+                            Une plateforme d'analyse conçue pour aider les développeurs, les entreprises et les équipes numériques à examiner leurs sites web, repérer les points d'amélioration et produire un rapport d'audit clair et bien structuré.
+                        </p>
+                        <ul class="text-muted list-unstyled mb-4">
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-accent me-2"></i> Inspection automatique des en-têtes de sécurité (HTTPS, CSP, HSTS).</li>
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-accent me-2"></i> Vérification du niveau de conformité des données personnelles.</li>
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-accent me-2"></i> Génération de rapports clairs avec score de vulnérabilité.</li>
+                        </ul>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge-tech">PHP / Symfony</span>
+                            <span class="badge-tech">Security Audit</span>
+                            <span class="badge-tech">Python Analyser</span>
+                            <span class="badge-tech">Dashboard UI</span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 text-center">
+                        <div class="p-4 glass-card bg-dark bg-opacity-50 border border-secondary">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <small class="text-muted font-monospace"><i class="fa-solid fa-terminal me-1"></i> AUDIT REPORT #8492</small>
+                                <span class="badge bg-success">82% Conforme</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 8px;">
+                                <div class="progress-bar bg-success" style="width: 82%"></div>
+                            </div>
+                            <div class="text-start bg-black bg-opacity-40 p-3 rounded border border-secondary mb-3">
+                                <small class="d-block text-success mb-2"><i class="fa-solid fa-check me-2"></i> En-têtes HTTPS & TLS Valides</small>
+                                <small class="d-block text-success mb-2"><i class="fa-solid fa-check me-2"></i> Protection XSS & CSRF Activée</small>
+                                <small class="d-block text-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i> En-tête CSP (Content Security Policy) à renforcer</small>
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <div class="p-2 bg-dark rounded border border-info">
+                                        <small class="text-muted d-block">Score Web</small>
+                                        <span class="fw-bold text-accent fs-5">A-</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-2 bg-dark rounded border border-info">
+                                        <small class="text-muted d-block">Score Mobile</small>
+                                        <span class="fw-bold text-accent fs-5">12/14</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATALOGUE COMPLET DE PROJETS -->
+            <div class="text-center mb-4">
+                <h3 class="h4 fw-bold">Autres Réalisations & Projets Déployés</h3>
+            </div>
+
+            <div class="row g-4">
+                
+                <!-- Projet 2: Infirmerie Cour Suprême -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card h-100 p-4 d-flex flex-column">
+                        <div class="badge bg-info text-dark mb-2" style="width: fit-content;">Cour Suprême du Bénin</div>
+                        <h4 class="fw-bold">GestionMed-Cour</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Application web sur mesure pour la gestion de stock de pharmacie et le suivi des produits de santé pour l'infirmerie de la Cour Suprême.
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mt-3">
+                            <span class="badge-tech">PHP</span>
+                            <span class="badge-tech">MySQL</span>
+                            <span class="badge-tech">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3: Plateforme Docteur -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card h-100 p-4 d-flex flex-column">
+                        <div class="badge bg-primary mb-2" style="width: fit-content;">Plateforme Académique</div>
+                        <h4 class="fw-bold">Docteur Academic</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Plateforme universitaire d'évaluation et d'accès aux ressources académiques hébergée et déployée en ligne.
+                        </p>
+                        <a href="http://docteur.infinityfree.io" target="_blank" class="btn btn-sm btn-outline-info rounded-pill mt-3">
+                            <i class="fa-solid fa-globe me-1"></i> docteur.infinityfree.io
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projet 4: Borne SMVE -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card h-100 p-4 d-flex flex-column">
+                        <div class="badge bg-warning text-dark mb-2" style="width: fit-content;">Innovation IoT</div>
+                        <h4 class="fw-bold">Borne Automatique SMVE</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Concept de borne mobile automatisée pour l'impression et la photocopie via scan de QR Code.
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mt-3">
+                            <span class="badge-tech">QR Code</span>
+                            <span class="badge-tech">IoT Concept</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 5: GestionImmo -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card h-100 p-4 d-flex flex-column">
+                        <div class="badge bg-success mb-2" style="width: fit-content;">Immobilier</div>
+                        <h4 class="fw-bold">GestionImmo Bénin</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Logiciel de suivi des baux, gestion des loyers et quittances électroniques adapté aux réalités du marché immobilier local.
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mt-3">
+                            <span class="badge-tech">Symfony</span>
+                            <span class="badge-tech">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 6: Cyber Challenges -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card h-100 p-4 d-flex flex-column">
+                        <div class="badge bg-danger mb-2" style="width: fit-content;">Cybersécurité</div>
+                        <h4 class="fw-bold">CTF & Forensic Challenges</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Résolution de challenges de sécurité informatique (décodage de trames réseau, recherche de traces forensic, sécurité web).
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mt-3">
+                            <span class="badge-tech">Wireshark</span>
+                            <span class="badge-tech">Kali Linux</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 7: Vœux & Cartes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card h-100 p-4 d-flex flex-column">
+                        <div class="badge bg-secondary mb-2" style="width: fit-content;">Application Web</div>
+                        <h4 class="fw-bold">Générateur de Vœux</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Plateforme interactive de création et d'envoi de cartes de vœux virtuelles intégrée avec le partage WhatsApp.
+                        </p>
+                        <div class="d-flex flex-wrap gap-1 mt-3">
+                            <span class="badge-tech">JavaScript</span>
+                            <span class="badge-tech">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMATION ET CERTIFICATIONS -->
+    <section id="experience" class="py-5">
+        <div class="container py-4">
+            <div class="row gy-5">
+                
+                <div class="col-lg-6">
+                    <h2 class="display-6 fw-bold mb-4">Formation Académique</h2>
+                    <div class="glass-card p-4 mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="h5 text-accent fw-bold mb-0">Licence SIL (Systèmes Informatiques & Logiciels)</h4>
+                            <span class="badge bg-secondary">UPAO</span>
+                        </div>
+                        <p class="text-muted small mb-0">
+                            Formation d'excellence dispensée à l'<strong>Université Protestante de l'Afrique de l'Ouest (UPAO)</strong> axée sur la conception de logiciels, le génie logiciel, la sécurité des réseaux et les bases de données.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-4">
+                        <h4 class="h5 text-accent fw-bold mb-2">Langues & Communication</h4>
+                        <ul class="list-unstyled text-muted small mb-0">
+                            <li class="mb-2"><i class="fa-solid fa-check text-accent me-2"></i> <strong>Français :</strong> Langue maternelle (Excellente maîtrise écrite et orale).</li>
+                            <li><i class="fa-solid fa-check text-accent me-2"></i> <strong>Anglais :</strong> Niveau professionnel (Lecture fluide de documentations, rédaction et échanges).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" id="certifications">
+                    <h2 class="display-6 fw-bold mb-4">Certifications & Attestations</h2>
+                    <div class="glass-card p-4">
+                        <ul class="list-unstyled mb-0">
+                            <li class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-secondary">
+                                <i class="fa-solid fa-award fs-3 text-warning"></i>
+                                <div>
+                                    <h5 class="h6 mb-0">Attestation ICSS en Ligne</h5>
+                                    <small class="text-muted">Internet & Cybersecurity Certification</small>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-secondary">
+                                <i class="fa-brands fa-python fs-3 text-info"></i>
+                                <div>
+                                    <h5 class="h6 mb-0">OpenClassrooms - Python</h5>
+                                    <small class="text-muted">Programmation & Algorithmique</small>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-secondary">
+                                <i class="fa-brands fa-php fs-3 text-primary"></i>
+                                <div>
+                                    <h5 class="h6 mb-0">OpenClassrooms - PHP & Symfony</h5>
+                                    <small class="text-muted">Développement Web Backend</small>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <i class="fa-solid fa-network-wired fs-3 text-success"></i>
+                                <div>
+                                    <h5 class="h6 mb-0">OpenClassrooms - Administration Réseaux</h5>
+                                    <small class="text-muted">Gestion d'Infrastructures & Sécurité</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER ultra DÉTAILLÉ & CONTACT -->
+    <footer id="contact" class="pt-5 pb-4">
+        <div class="container pt-4">
+            <div class="row g-4 mb-5">
+                
+                <div class="col-lg-6">
+                    <h2 class="display-6 fw-bold text-accent mb-3">ADEKAMBI Kolawole Farouck Tunde</h2>
+                    <p class="text-muted fs-5 mb-3">
+                        Ingénieur en Sécurité Applicative & Développeur Web Fullstack.
+                    </p>
+                    <p class="text-muted mb-4">
+                        Basé à <strong>Porto-Novo (Quartier Cinquantenaire, Bénin)</strong>, je reste disponible pour toute opportunité professionnelle, audit de sécurité logicielle ou projet de développement web sur mesure.
+                    </p>
+                    
+                    <div class="p-3 glass-card bg-dark bg-opacity-40 border border-secondary mb-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-map-location-dot fs-2 text-accent"></i>
+                            <div>
+                                <small class="text-muted d-block">Adresse Résidentielle :</small>
+                                <span class="fw-bold">Porto-Novo, Quartier Cinquantenaire — BÉNIN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="glass-card p-4">
+                        <h3 class="h5 fw-bold mb-4"><i class="fa-solid fa-address-book text-accent me-2"></i> Coordonnées Directes</h3>
+                        
+                        <div class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-secondary border-opacity-25">
+                            <i class="fa-solid fa-phone fs-4 text-accent"></i>
+                            <div>
+                                <small class="text-muted d-block">Téléphones de contact :</small>
+                                <a href="tel:0152838253" class="text-white fw-bold me-3 text-decoration-none fs-6">01 52 83 82 53</a>
+                                <a href="tel:0143156280" class="text-white fw-bold text-decoration-none fs-6">01 43 15 62 80</a>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-secondary border-opacity-25">
+                            <i class="fa-solid fa-envelope fs-4 text-accent"></i>
+                            <div>
+                                <small class="text-muted d-block">Adresse E-mail Officielle :</small>
+                                <a href="mailto:faroucktundeadekambi@gmail.com" class="text-white fw-bold text-decoration-none">faroucktundeadekambi@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-brands fa-whatsapp fs-4 text-success"></i>
+                            <div>
+                                <small class="text-muted d-block">WhatsApp Direct :</small>
+                                <a href="https://wa.me/2290152838253" target="_blank" class="text-success fw-bold text-decoration-none">+229 01 52 83 82 53</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-secondary opacity-25">
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 pt-2 text-muted small">
+                <div>
+                    © <span id="year"></span> <strong>ADEKAMBI Kolawole Farouck Tunde</strong> — Porto-Novo, Cinquantenaire (Bénin).
+                </div>
+                <div>
+                    Conçu avec <i class="fa-solid fa-shield text-accent"></i> & Bootstrap 5
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script de gestion du thème et du lecteur Audio -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Gestion de la couleur du thème
+        function toggleTheme() {
+            document.body.classList.toggle('theme-red');
+        }
+
+        // Gestion du lecteur audio
+        const audio = document.getElementById('portfolioAudio');
+        const audioIcon = document.getElementById('audioIcon');
+        const audioWidget = document.getElementById('audioWidget');
+        const audioStatus = document.getElementById('audioStatus');
+        const heroAudioIcon = document.getElementById('heroAudioIcon');
+        const heroAudioText = document.getElementById('heroAudioText');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                audioIcon.className = "fa-solid fa-pause";
+                audioWidget.classList.add('audio-playing');
+                audioStatus.textContent = "Audio : On";
+                heroAudioIcon.className = "fa-solid fa-pause me-2";
+                heroAudioText.textContent = "Mettre en Pause";
+            } else {
+                audio.pause();
+                audioIcon.className = "fa-solid fa-play";
+                audioWidget.classList.remove('audio-playing');
+                audioStatus.textContent = "Audio : Off";
+                heroAudioIcon.className = "fa-solid fa-music me-2";
+                heroAudioText.textContent = "Écouter la Musique";
+            }
+        }
+    </script>
+</body>
+</html>
