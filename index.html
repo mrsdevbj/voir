@@ -246,6 +246,101 @@
             border-top: 2px solid var(--accent-color);
             transition: border-color 0.5s ease;
         }
+
+        html {
+            scroll-padding-top: 5rem;
+        }
+
+        section,
+        footer {
+            scroll-margin-top: 5rem;
+        }
+
+        .large-photo-container {
+            width: min(340px, calc(100vw - 3rem));
+            height: auto;
+            aspect-ratio: 1;
+        }
+
+        .glass-card,
+        .badge-tech {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        @media (min-width: 992px) {
+            .large-photo-container {
+                width: min(400px, 100%);
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            body {
+                background-attachment: scroll;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .navbar > .container {
+                column-gap: 0.35rem;
+            }
+
+            .navbar-brand {
+                margin-right: auto;
+                font-size: clamp(0.9rem, 4.4vw, 1.25rem) !important;
+            }
+
+            .audio-player-widget {
+                gap: 8px;
+                padding: 5px 10px;
+            }
+
+            .navbar-toggler {
+                padding: 0.25rem 0.35rem;
+            }
+
+            .hero-section .display-3 {
+                font-size: clamp(2rem, 9vw, 3.25rem);
+                line-height: 1.1;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .display-5 {
+                font-size: clamp(1.8rem, 7vw, 2.5rem);
+            }
+
+            .display-6 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+
+            .glass-card {
+                border-radius: 16px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .audio-wave {
+                display: none;
+            }
+
+            .navbar-brand .fa-shield-halved {
+                margin-right: 0.35rem !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -301,11 +396,12 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="min-vh-100 d-flex align-items-center pt-5 mt-4">
+    <section class="hero-section min-vh-100 d-flex align-items-center pt-5 mt-4">
         <div class="container py-5">
             <div class="row align-items-center gy-5">
                 
                 <div class="col-lg-7 text-center text-lg-start">
+                    <p class="text-accent text-uppercase fw-semibold small mb-3">Bienvenue dans mon portfolio</p>
                     <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start mb-3">
                         <span class="badge bg-dark border border-info text-accent px-3 py-2 rounded-pill">
                             <i class="fa-solid fa-shield-virus me-2"></i>APPLICATION SECURITY ENGINEER
@@ -324,9 +420,12 @@
                         Concepteur de systèmes informatiques sécurisés, auditeur de code et développeur d'applications web robustes. Basé à Porto-Novo (Bénin).
                     </p>
                     
-                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start align-items-center">
+                    <div class="hero-actions d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start align-items-center">
                         <a href="#projects" class="btn btn-accent btn-lg rounded-pill px-4">
                             <i class="fa-solid fa-rocket me-2"></i>Découvrir mes Projets
+                        </a>
+                        <a href="https://wa.me/2290152838253" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success btn-lg rounded-pill px-4">
+                            <i class="fa-brands fa-whatsapp me-2"></i>Me contacter sur WhatsApp
                         </a>
                         <!-- BOUTON MUSIQUE AMBIANCE HERO -->
                         <button onclick="toggleAudio()" class="btn btn-outline-info btn-lg rounded-pill px-4">
