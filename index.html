@@ -3,7 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | ADEKAMBI Kolawole Farouck Tunde - Application Security Engineer</title>
+    <meta name="description" content="Portfolio d'ADEKAMBI Kolawole Farouck Tunde, ingénieur en sécurité applicative et développeur web fullstack à Porto-Novo, Bénin. Découvrez ses projets, compétences et certifications.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="ADEKAMBI Kolawole Farouck Tunde">
+    <meta name="theme-color" content="#070a12">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_BJ">
+    <meta property="og:title" content="ADEKAMBI Farouck | Sécurité applicative & développement web">
+    <meta property="og:description" content="Ingénieur en sécurité applicative et développeur web fullstack à Porto-Novo, Bénin. Découvrez mes projets et contactez-moi.">
+    <title>ADEKAMBI Farouck | Ingénieur en sécurité applicative à Porto-Novo</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "ADEKAMBI Kolawole Farouck Tunde",
+            "jobTitle": "Ingénieur en sécurité applicative et développeur web fullstack",
+            "email": "faroucktundeadekambi@gmail.com",
+            "telephone": "+229 01 52 83 82 53",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Porto-Novo",
+                "addressCountry": "BJ"
+            },
+            "knowsAbout": [
+                "Sécurité applicative",
+                "Développement web fullstack",
+                "Audit de sécurité",
+                "PHP",
+                "Symfony",
+                "Python"
+            ]
+        }
+    </script>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -68,7 +99,7 @@
         .photo-outer-glow {
             position: absolute;
             inset: -15px;
-            border-radius: 50%;
+            border-radius: 32px;
             background: conic-gradient(from 0deg, var(--accent-color), transparent, var(--accent-secondary), var(--accent-color));
             filter: blur(25px);
             opacity: 0.8;
@@ -79,7 +110,7 @@
         .photo-metallic-frame {
             position: absolute;
             inset: -6px;
-            border-radius: 50%;
+            border-radius: 26px;
             background: linear-gradient(145deg, #e6e6e6, #404040, #1a1a1a, #808080);
             padding: 6px;
             box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
@@ -90,7 +121,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            border-radius: 20px;
             overflow: hidden;
             border: 5px solid var(--bg-dark);
             background: #0f172a;
@@ -241,6 +272,39 @@
             box-shadow: 0 0 10px var(--accent-color);
         }
 
+        .hero-section {
+            overflow-x: clip;
+        }
+
+        .contact-form-card {
+            animation: formReveal 0.8s ease both;
+        }
+
+        .contact-form-card .form-control {
+            color: var(--text-main);
+            background: rgba(7, 10, 18, 0.7);
+            border: 1px solid var(--border-glow);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .contact-form-card .form-control:focus {
+            color: var(--text-main);
+            background: rgba(7, 10, 18, 0.9);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .contact-form-card .form-control::placeholder {
+            color: var(--text-muted);
+            opacity: 0.8;
+        }
+
+        @keyframes formReveal {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         footer {
             background: #03050a;
             border-top: 2px solid var(--accent-color);
@@ -266,6 +330,11 @@
         .badge-tech {
             min-width: 0;
             overflow-wrap: anywhere;
+        }
+
+        .glass-card .badge {
+            max-width: 100%;
+            white-space: normal;
         }
 
         @media (min-width: 992px) {
@@ -441,7 +510,7 @@
                         <div class="photo-metallic-frame">
                             <div class="photo-inner-box">
                                 <!-- REMPLACEZ 'votre-photo.jpg' PAR LE NOM DE VOTRE FICHIER IMAGE -->
-                                <img src="1762615305893.jpg" alt="ADEKAMBI Kolawole Farouck Tunde" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <img src="1762615305893.jpg" alt="Portrait d'ADEKAMBI Kolawole Farouck Tunde, ingénieur en sécurité applicative au Bénin" fetchpriority="high" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                 <div class="photo-placeholder-text" style="display: none;">
                                     <i class="fa-solid fa-user-gear fs-1 text-accent mb-2"></i><br>
                                     Insérez votre photo<br><strong>votre-photo.jpg</strong>
@@ -847,6 +916,48 @@
 
             </div>
 
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10 col-xl-9">
+                    <div class="glass-card contact-form-card p-4 p-lg-5">
+                        <div class="text-center mb-4">
+                            <span class="badge bg-primary bg-opacity-20 text-info border border-info px-3 py-2 rounded-pill mb-2">PARLONS DE VOTRE PROJET</span>
+                            <h3 class="display-6 fw-bold">Envoyez-moi un message</h3>
+                            <p class="text-muted mb-0">Remplissez le formulaire : votre application de messagerie préparera l’email.</p>
+                        </div>
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="contactNom" class="form-label">Votre nom</label>
+                                    <input type="text" class="form-control form-control-lg" id="contactNom" name="nom" autocomplete="family-name" placeholder="Votre nom" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactPrenoms" class="form-label">Vos prénoms</label>
+                                    <input type="text" class="form-control form-control-lg" id="contactPrenoms" name="prenoms" autocomplete="given-name" placeholder="Vos prénoms" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactTelephone" class="form-label">Votre numéro</label>
+                                    <input type="tel" class="form-control form-control-lg" id="contactTelephone" name="telephone" autocomplete="tel" placeholder="+229 ..." required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactEmail" class="form-label">Votre email</label>
+                                    <input type="email" class="form-control form-control-lg" id="contactEmail" name="email" autocomplete="email" placeholder="vous@exemple.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactMessage" class="form-label">Votre message</label>
+                                    <textarea class="form-control" id="contactMessage" name="message" rows="5" placeholder="Décrivez votre besoin ou votre projet..." required></textarea>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-accent btn-lg rounded-pill px-5">
+                                        <i class="fa-solid fa-paper-plane me-2"></i>Préparer mon email
+                                    </button>
+                                    <p class="text-muted small mt-3 mb-0">L’envoi final se fait depuis votre application email après ouverture du brouillon.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <hr class="border-secondary opacity-25">
 
             <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 pt-2 text-muted small">
@@ -866,6 +977,24 @@
     <!-- Script de gestion du thème et du lecteur Audio -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.currentTarget);
+            const subject = `Message portfolio de ${formData.get('prenoms')} ${formData.get('nom')}`;
+            const body = [
+                `Nom : ${formData.get('nom')}`,
+                `Prénoms : ${formData.get('prenoms')}`,
+                `Téléphone : ${formData.get('telephone')}`,
+                `Email : ${formData.get('email')}`,
+                '',
+                'Message :',
+                formData.get('message')
+            ].join('\n');
+
+            window.location.href = `mailto:faroucktundeadekambi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
 
         // Gestion de la couleur du thème
         function toggleTheme() {
